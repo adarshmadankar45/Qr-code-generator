@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h3>Your QR Code</h3>
+    <img src="data:image/png;base64,{{ qr_code.qr_code_image }}" class="img-fluid rounded shadow-lg mt-3">
+
+    <div class="mt-4">
+        <p><strong>Scan Count:</strong> {{ qr_code.scan_count }}</p>
+        <p><strong>Expiration:</strong> {{ qr_code.expires_at|default:"Never" }}</p>
+        <p><strong>Password Protected:</strong> {{ qr_code.password|yesno:"Yes,No" }}</p>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'download_qr_code' qr_code.data %}" class="btn btn-success">Download QR Code</a>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Generate Another</a>
+    </div>
+</div>
+{% endblock %}

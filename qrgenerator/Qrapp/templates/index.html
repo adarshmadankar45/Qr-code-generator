@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-lg p-4">
+    <form method="post" action="{% url 'generate_qr_code' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.qr_code_type.label_tag }}
+            {{ form.qr_code_type }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.data.label_tag }}
+            {{ form.data }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Generate QR Code</button>
+    </form>
+</div>
+{% endblock %}
